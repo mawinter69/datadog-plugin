@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
-    <version>4.52</version> <!-- or whatever the newest version available is -->
+    <version>5.17</version> <!-- or whatever the newest version available is -->
     <!--Check https://mvnrepository.com/artifact/org.jenkins-ci.plugins/plugin?repo=jenkins-releases-->
     <relativePath />
   </parent>
@@ -20,11 +20,11 @@
 
   <properties>
     <!-- https://www.jenkins.io/doc/developer/plugin-development/choosing-jenkins-baseline/ -->
-    <jenkins.baseline>2.361</jenkins.baseline>
-    <jenkins.version>${jenkins.baseline}.4</jenkins.version>
+    <jenkins.baseline>2.479</jenkins.baseline>
+    <jenkins.version>${jenkins.baseline}.3</jenkins.version>
     <hpi.compatibleSinceVersion>1.0.0</hpi.compatibleSinceVersion>
     <!-- byte-buddy is needed with java 11: https://stackoverflow.com/questions/69929229/mockito-shipped-within-spring-boot-fails-to-attach-to-jvm-openjdk-11/72912290#72912290 -->
-    <byte-buddy.version>1.12.14</byte-buddy.version>
+    <byte-buddy.version>1.17.5</byte-buddy.version>
     <useBeta>true</useBeta>
   </properties>
 
@@ -69,7 +69,7 @@
       <dependency>
         <groupId>io.jenkins.tools.bom</groupId>
         <artifactId>bom-${jenkins.baseline}.x</artifactId>
-        <version>2102.v854b_fec19c92</version>
+        <version>4770.v9a_2b_7a_9d8b_7f</version>
         <scope>import</scope>
         <type>pom</type>
       </dependency>
@@ -80,7 +80,6 @@
     <dependency>
       <groupId>io.jenkins.plugins</groupId>
       <artifactId>jnr-posix-api</artifactId>
-      <version>3.1.7-1</version>
     </dependency>
     <dependency>
       <groupId>com.datadoghq</groupId>
@@ -99,9 +98,8 @@
         <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.json</groupId>
-      <artifactId>json</artifactId>
-      <version>20240303</version>
+      <groupId>io.jenkins.plugins</groupId>
+      <artifactId>json-api</artifactId>
     </dependency>
     <dependency>
       <groupId>com.github.stefanbirkner</groupId>
@@ -150,7 +148,6 @@
     <dependency>
       <groupId>org.jenkins-ci.plugins.pipeline-stage-view</groupId>
       <artifactId>pipeline-rest-api</artifactId>
-      <version>2.12</version>
     </dependency>
     <dependency>
       <groupId>org.jenkins-ci.plugins.workflow</groupId>
@@ -182,27 +179,10 @@
     <dependency>
       <groupId>org.jenkinsci.plugins</groupId>
       <artifactId>pipeline-model-definition</artifactId>
-      <version>1.4.0</version>
-      <exclusions>
-        <exclusion>
-          <groupId>com.fasterxml.jackson.core</groupId>
-          <artifactId>jackson-core</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>com.fasterxml.jackson.core</groupId>
-          <artifactId>jackson-databind</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.jenkins-ci.plugins</groupId>
-          <artifactId>jackson2-api</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>jackson2-api</artifactId>
-      <version>2.15.0-334.v317a_165f9b_7c</version>
-      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
@@ -210,10 +190,10 @@
       <version>9.4.51.v20230217</version>
     </dependency>
     <dependency>
-      <groupId>org.bouncycastle</groupId>
-      <artifactId>bcpg-jdk18on</artifactId>
-      <version>1.72</version>
-    </dependency>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>bouncycastle-api</artifactId>
+      <version>2.30.1.80-999999-SNAPSHOT</version>
+    </dependency>    
     <dependency>
       <groupId>io.jenkins.lib</groupId>
       <artifactId>support-log-formatter</artifactId>
@@ -223,6 +203,7 @@
       <groupId>org.kohsuke</groupId>
       <artifactId>access-modifier-suppressions</artifactId>
       <version>${access-modifier-checker.version}</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>io.dropwizard.metrics</groupId>
@@ -233,6 +214,16 @@
       <groupId>io.dropwizard.metrics</groupId>
       <artifactId>metrics-json</artifactId>
       <version>4.2.28</version>
+      <exclusions>
+        <exclusion>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-core</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-databind</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
   </dependencies>
 
